@@ -9,6 +9,11 @@ val secrets = File("config.yaml").readLines().map { it.split(": ") }.associate {
 
 val commands = listOf("/start", "/commands", "/gif", "/audio")
 
+val responseMessages = listOf(
+    "Hello!", commands.joinToString("\n","List of commands:\n"),
+    "Starting downloading a gif...", "Starting downloading an audio..."
+)
+
 fun main() {
     TelegramBotsApi(DefaultBotSession::class.java).registerBot(Bot())
 }
@@ -25,21 +30,8 @@ class Bot : TelegramLongPollingBot() {
         val cmd = args[0]
         val sendMsg = SendMessage()
         sendMsg.setChatId(update.message.chatId)
-        if (cmd == commands[0]) {
-            sendMsg.text = "Hello!"
-            this.execute(sendMsg)
-        }
-        if (cmd == commands[1]) {
-            sendMsg.text = commands.joinToString("\n","List of commands:\n")
-            this.execute(sendMsg)
-        }
-        if (cmd == commands[2]) {
-            sendMsg.text = "Start downloading a gif..."
-            this.execute(sendMsg)
-        }
-        if (cmd == commands[3]) {
-            sendMsg.text = "Start downloading an audio..."
-            this.execute(sendMsg)
-        }
+        val cmdId = commands.indexOf(cmd)
+        sendMsg.text = responseMessages[cmdId]
+        this.execute(sendMsg)
     }
 }

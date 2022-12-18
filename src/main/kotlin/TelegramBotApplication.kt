@@ -7,7 +7,7 @@ import java.io.File
 
 val secrets = File("config.yaml").readLines().map { it.split(": ") }.associate { it[0] to it[1] }
 
-val commands = listOf("/start", "/commands", "/gif")
+val commands = listOf("/start", "/commands", "/gif", "/audio")
 
 fun main() {
     TelegramBotsApi(DefaultBotSession::class.java).registerBot(Bot())
@@ -35,6 +35,10 @@ class Bot : TelegramLongPollingBot() {
         }
         if (cmd == commands[2]) {
             sendMsg.text = "Start downloading a gif..."
+            this.execute(sendMsg)
+        }
+        if (cmd == commands[3]) {
+            sendMsg.text = "Start downloading an audio..."
             this.execute(sendMsg)
         }
     }

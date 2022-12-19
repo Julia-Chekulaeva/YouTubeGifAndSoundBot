@@ -2,8 +2,6 @@ import it.grabz.grabzit.GrabzItClient
 import it.grabz.grabzit.GrabzItException
 import it.grabz.grabzit.parameters.AnimationOptions
 
-const val defaultDuration = 60
-
 class GifTooLargeException(override val message: String?) : Exception()
 
 fun gifLoader(url: String, start: Int, end: Int, fileName: String): Boolean {

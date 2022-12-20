@@ -8,9 +8,13 @@ version = '1.0'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.4'
+    implementation 'it.grabz.grabzit:grabzit:3.5.2'
+    implementation 'com.github.Cloudmersive:Cloudmersive.APIClient.Java:v3.54'
     implementation 'org.telegram:telegrambots:6.3.0'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }

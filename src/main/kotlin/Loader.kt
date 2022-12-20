@@ -35,10 +35,13 @@ fun getInfo(url: String, downloader: YoutubeDownloader): Response<VideoInfo> {
 
 fun loader (
     start: Int, end: Int, fileName: String,
-    videoInfo: VideoInfo, format: String
+    videoInfo: VideoInfo, cmdId: Int
 ) {
     val file = File(fileName)
-    val urlFormat = if (format == gifFormat) videoInfo.bestVideoFormat() else videoInfo.bestAudioFormat()
+    val urlFormat = when (cmdId) {
+        2 -> videoInfo.bestVideoFormat()
+        else -> videoInfo.bestAudioFormat()
+    }
     convert(urlFormat.url(), file.absolutePath, start, end)
 }
 

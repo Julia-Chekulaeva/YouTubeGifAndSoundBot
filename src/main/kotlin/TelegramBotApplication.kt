@@ -80,7 +80,7 @@ class Bot : TelegramLongPollingBot() {
                 } seconds"
                 execute(sendMsg)
                 if (cmdId == 2) {
-                    loader(start, end, fileName, videoInfo.data(), gifFormat)
+                    loader(start, end, fileName, videoInfo.data(), cmdId)
                     val sendAnim = SendAnimation()
                     sendAnim.setChatId(update.message.chatId)
                     sendAnim.animation = InputFile()
@@ -89,7 +89,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMsg.text = "Gif is loaded from YouTube."
                     execute(sendMsg)
                 } else {
-                    loader(start, end, fileName, videoInfo.data(), wavFormat)
+                    loader(start, end, fileName, videoInfo.data(), cmdId)
                     val sendAudio = SendAudio()
                     sendAudio.setChatId(update.message.chatId)
                     sendAudio.audio = InputFile()

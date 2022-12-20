@@ -13,11 +13,7 @@ repositories {
 
 dependencies {
     implementation 'net.bramp.ffmpeg:ffmpeg:0.7.0'
-    implementation 'com.squareup:gifencoder:0.10.1'
     implementation 'com.github.sealedtx:java-youtube-downloader:3.1.0'
-    implementation 'com.sun.xml.bind:jaxb-impl:2.3.4'
-    implementation 'it.grabz.grabzit:grabzit:3.5.2'
-    implementation 'com.github.Cloudmersive:Cloudmersive.APIClient.Java:v3.54'
     implementation 'org.telegram:telegrambots:6.3.0'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }

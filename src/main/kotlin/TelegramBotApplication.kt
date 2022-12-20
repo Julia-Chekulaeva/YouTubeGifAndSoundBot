@@ -20,6 +20,9 @@ val responseMessages = listOf(
 
 const val resources = "src/main/resources/"
 
+const val wavFormat = ".wav"
+const val gifFormat = ".gif"
+
 val regex = Regex("""((\d?\d:)?[0-5]?\d:[0-5]?\d)?-((\d?\d:)?[0-5]?\d:[0-5]?\d)?""")
 
 fun main() {
@@ -49,11 +52,11 @@ class Bot : TelegramLongPollingBot() {
             }
             val url = args[1]
             val downloader = YoutubeDownloader()
-            val fileName = resources + update.updateId + if (cmdId == 2)".gif" else ".mp4"
+            val fileName = resources + update.updateId + if (cmdId == 2) gifFormat else wavFormat
             try {
                 val videoInfo = getInfo(url, downloader)
                 val duration = videoInfo.data().details().lengthSeconds()
-                val timeSteps = arrayOf(0, duration)
+                val timeSteps = arrayOf(0, -1)
                 if (args.size >= 3 && args[2].matches(regex)) {
                     args[2].split("-").withIndex().forEach {
                         if (it.value != "")
@@ -63,11 +66,21 @@ class Bot : TelegramLongPollingBot() {
                     }
                 }
                 val start = timeSteps[0]
-                val end = timeSteps[1].coerceAtMost(duration)
-                sendMsg.text = "Start time: $start seconds\nEnd time: $end seconds"
+                val end = timeSteps[1]
+                if (end >= 0) {
+                    if (start >= end) {
+                        throw Exception("The start of the fragment must be less than the end of it")
+                    }
+                    if (end > duration) {
+                        throw Exception("The end of the fragment mustn't be greater than the video length")
+                    }
+                }
+                sendMsg.text = "Start time: $start seconds\nEnd time: ${
+                    if (end < 0) duration else end
+                } seconds"
                 execute(sendMsg)
                 if (cmdId == 2) {
-                    gifLoader(url, start, end, fileName)
+                    loader(start, end, fileName, videoInfo.data(), gifFormat)
                     val sendAnim = SendAnimation()
                     sendAnim.setChatId(update.message.chatId)
                     sendAnim.animation = InputFile()
@@ -76,7 +89,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMsg.text = "Gif is loaded from YouTube."
                     execute(sendMsg)
                 } else {
-                    gifLoader(url, start, end, fileName)
+                    loader(start, end, fileName, videoInfo.data(), wavFormat)
                     val sendAudio = SendAudio()
                     sendAudio.setChatId(update.message.chatId)
                     sendAudio.audio = InputFile()

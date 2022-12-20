@@ -79,25 +79,26 @@ class Bot : TelegramLongPollingBot() {
                     if (end < 0) duration else end
                 } seconds"
                 execute(sendMsg)
-                if (cmdId == 2) {
-                    loader(start, end, fileName, videoInfo.data(), cmdId)
-                    val sendAnim = SendAnimation()
-                    sendAnim.setChatId(update.message.chatId)
-                    sendAnim.animation = InputFile()
-                    sendAnim.animation.setMedia(File(fileName))
-                    execute(sendAnim)
-                    sendMsg.text = "Gif is loaded from YouTube."
-                    execute(sendMsg)
-                } else {
-                    loader(start, end, fileName, videoInfo.data(), cmdId)
-                    val sendAudio = SendAudio()
-                    sendAudio.setChatId(update.message.chatId)
-                    sendAudio.audio = InputFile()
-                    sendAudio.audio.setMedia(File(fileName))
-                    execute(sendAudio)
-                    sendMsg.text = "Audio is loaded from YouTube."
-                    execute(sendMsg)
+                loader(start, end, fileName, videoInfo.data(), cmdId)
+                when (cmdId) {
+                    2 -> {
+                        val sendAnim = SendAnimation()
+                        sendAnim.setChatId(update.message.chatId)
+                        sendAnim.animation = InputFile()
+                        sendAnim.animation.setMedia(File(fileName))
+                        execute(sendAnim)
+                        sendMsg.text = "Gif is loaded from YouTube."
+                    }
+                    3 -> {
+                        val sendAudio = SendAudio()
+                        sendAudio.setChatId(update.message.chatId)
+                        sendAudio.audio = InputFile()
+                        sendAudio.audio.setMedia(File(fileName))
+                        execute(sendAudio)
+                        sendMsg.text = "Audio is loaded from YouTube."
+                    }
                 }
+                execute(sendMsg)
             } catch (e: Exception) {
                 sendMsg.text = "An error occurred: ${e.message}"
                 execute(sendMsg)

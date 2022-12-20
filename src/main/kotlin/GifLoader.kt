@@ -1,9 +1,6 @@
 import it.grabz.grabzit.GrabzItClient
 import it.grabz.grabzit.GrabzItException
 import it.grabz.grabzit.parameters.AnimationOptions
-import java.io.File
-
-val secrets = File("config.yaml").readLines().map { it.split(": ") }.associate { it[0] to it[1] }
 
 class GifTooLargeException(override val message: String?) : Exception()
 

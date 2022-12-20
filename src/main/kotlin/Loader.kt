@@ -14,7 +14,7 @@ class URLException : Exception() {
 }
 
 val urlRegex = Regex(
-    """https?://((www.youtube.com/watch\?v=|youtube.com/shorts/)[\w\d_]+([&?].*)?|youtu.be/[\w\d_]+)"""
+    """https?://(www.youtube.com/watch\?v=[\w\d_]+([&?].*)?|youtu.be/[\w\d_]+)"""
 )
 
 fun getInfo(url: String, downloader: YoutubeDownloader): Response<VideoInfo> {

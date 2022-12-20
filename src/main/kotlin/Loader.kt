@@ -58,15 +58,3 @@ fun convert(inputFile: String, outputFile: String, start: Int, end: Int) {
     val executor = FFmpegExecutor(ffMPEG, ffProbe)
     executor.createJob(builder.done()).run()
 }
-
-fun main() {
-    val fileName = "output"
-    val url = "https://www.youtube.com/watch?v=6ofIPBp_mXo"
-    val start = 20
-    val end = 21
-    val downloader = YoutubeDownloader()
-    val videoInfo: VideoInfo = getInfo(url, downloader).data()
-    val format = ".gif"
-
-    loader(start, end, fileName, videoInfo, format)
-}

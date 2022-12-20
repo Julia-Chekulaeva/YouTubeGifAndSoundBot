@@ -66,18 +66,14 @@ class Bot : TelegramLongPollingBot() {
                     }
                 }
                 val start = timeSteps[0]
-                val end = timeSteps[1]
-                if (end >= 0) {
-                    if (start >= end) {
-                        throw Exception("The start of the fragment must be less than the end of it")
-                    }
-                    if (end > duration) {
-                        throw Exception("The end of the fragment mustn't be greater than the video length")
-                    }
+                val end = if (timeSteps[1] >= 0) timeSteps[1] else duration
+                if (start >= end) {
+                    throw Exception("The start of the fragment must be less than the end of it")
                 }
-                sendMsg.text = "Start time: $start seconds\nEnd time: ${
-                    if (end < 0) duration else end
-                } seconds"
+                if (end > duration) {
+                    throw Exception("The end of the fragment mustn't be greater than the video length")
+                }
+                sendMsg.text = "Start time: $start seconds\nEnd time: $end seconds"
                 execute(sendMsg)
                 loader(start, end, fileName, videoInfo.data(), cmdId)
                 when (cmdId) {

@@ -55,8 +55,7 @@ fun convert(inputFile: String, outputFile: String, start: Int, end: Int) {
         .addOutput(outputFile)
 
     builder.startOffset = start * 1000L
-    if (end >= 0)
-        builder.duration = (end - start) * 1000L
+    builder.duration = (end - start) * 1000L
 
     val executor = FFmpegExecutor(ffMPEG, ffProbe)
     executor.createJob(builder.done()).run()

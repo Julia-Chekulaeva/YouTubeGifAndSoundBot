@@ -2,13 +2,15 @@ import it.grabz.grabzit.GrabzItClient
 import it.grabz.grabzit.GrabzItException
 import it.grabz.grabzit.parameters.AnimationOptions
 
+const val defaultDuration = 60
+
 class GifTooLargeException(override val message: String?) : Exception()
 
 fun gifLoader(url: String, start: Int, end: Int, fileName: String): Boolean {
     val client = GrabzItClient(secrets["gif_loader_key"], secrets["gif_loader_secret"])
     val animOptions = AnimationOptions()
     animOptions.duration = end - start
-    animOptions.framesPerSecond = 20F
+    animOptions.framesPerSecond = 10F
     animOptions.speed = 1F
     animOptions.start = start
     animOptions.quality = -1

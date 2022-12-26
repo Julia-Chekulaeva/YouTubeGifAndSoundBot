@@ -15,9 +15,9 @@ val responseMessages = listOf(
     """Hello!
         |I can load animation (.gif) of audio (.wav) from the fragment from YouTube.
         |Please send me command
-        |/gif <youtube_url> [[[h:]m:s]-[[h:]m:s]]
+        |/gif youtube_url [[[h:]m:s]-[[h:]m:s]]
         |or
-        |/gif <youtube_url> [[[h:]m:s]-[[h:]m:s]]
+        |/audio youtube_url [[[h:]m:s]-[[h:]m:s]]
         |to start loading. Example:
         |/gif https://youtu.be/6ofIPBp_mXo -00:5
         |<youtube_url> format should be (http|https)://[www.](youtube.com.(watch?=|shorts/)|youtu.be/)<...>

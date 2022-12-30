@@ -4,12 +4,13 @@ import org.telegram.telegrambots.meta.TelegramBotsApi
 import org.telegram.telegrambots.meta.api.methods.send.SendAnimation
 import org.telegram.telegrambots.meta.api.methods.send.SendAudio
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
+import org.telegram.telegrambots.meta.api.methods.send.SendVideo
 import org.telegram.telegrambots.meta.api.objects.InputFile
 import org.telegram.telegrambots.meta.api.objects.Update
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession
 import java.io.File
 
-val commands = listOf("/start", "/commands", "/gif", "/audio")
+val commands = listOf("/start", "/commands", "/gif", "/audio", "/video")
 
 val responseMessages = listOf(
     """Hello!
@@ -22,7 +23,7 @@ val responseMessages = listOf(
         |/gif https://youtu.be/6ofIPBp_mXo -00:5
         |<youtube_url> format should be (http|https)://[www.](youtube.com.(watch?=|shorts/)|youtu.be/)<...>
         |You can use the command /commands to get the list of available commands.""".trimMargin(), commands.joinToString("\n","List of commands:\n"),
-    "Starting downloading a gif...", "Starting downloading an audio..."
+    "Starting downloading a gif...", "Starting downloading an audio...", "Starting downloading an video..."
 )
 
 const val resources = "src/main/resources/"
@@ -52,7 +53,7 @@ class Bot : TelegramLongPollingBot() {
         val cmdId = commands.indexOf(cmd)
         sendMsg.text = responseMessages[cmdId]
         execute(sendMsg)
-        if (cmdId in 2..3) {
+        if (cmdId in 2..4) {
             if (args.size < 2) {
                 sendMsg.text = "No URL provided"
                 execute(sendMsg)
@@ -60,7 +61,11 @@ class Bot : TelegramLongPollingBot() {
             }
             val url = args[1]
             val downloader = YoutubeDownloader()
-            val fileName = resources + update.updateId + if (cmdId == 2) animExt else audioExt
+            val fileName = resources + update.updateId + when (cmdId) {
+                2 -> animExt
+                3 -> audioExt
+                else -> videoExt
+            }
             try {
                 val videoInfoData = getInfo(url, downloader).data()
                 val duration = videoInfoData.details().lengthSeconds()
@@ -99,6 +104,13 @@ class Bot : TelegramLongPollingBot() {
                         sendAudio.audio = InputFile(file)
                         execute(sendAudio)
                         sendMsg.text = "Audio is loaded from YouTube."
+                    }
+                    4 -> {
+                        val sendVideo = SendVideo()
+                        sendVideo.setChatId(update.message.chatId)
+                        sendVideo.video = InputFile(file)
+                        execute(sendVideo)
+                        sendMsg.text = "Video is loaded from YouTube."
                     }
                 }
                 execute(sendMsg)

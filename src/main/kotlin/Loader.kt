@@ -44,7 +44,8 @@ fun loader (
         2 -> videoInfo.videoFormats().filter {
                 it.videoQuality() <= videoQualityMax
             }.maxByOrNull { it.videoQuality() }!!
-        else -> videoInfo.bestAudioFormat()
+        3 -> videoInfo.bestAudioFormat()
+        else -> videoInfo.bestVideoWithAudioFormat()
     }
     if (cmdId == 2) {
         val gifFile = file.absolutePath

@@ -23,7 +23,7 @@ val responseMessages = listOf(
         |/gif https://youtu.be/6ofIPBp_mXo -00:5
         |<youtube_url> format should be (http|https)://[www.](youtube.com.(watch?=|shorts/)|youtu.be/)<...>
         |You can use the command /commands to get the list of available commands.""".trimMargin(), commands.joinToString("\n","List of commands:\n"),
-    "Starting downloading a gif...", "Starting downloading an audio...", "Starting downloading an video..."
+    "Starting downloading a gif...", "Starting downloading an audio...", "Starting downloading a video..."
 )
 
 const val resources = "src/main/resources/"
@@ -95,6 +95,7 @@ class Bot : TelegramLongPollingBot() {
                         val sendAnim = SendAnimation()
                         sendAnim.setChatId(update.message.chatId)
                         sendAnim.animation = InputFile(file)
+                        sendAnim.duration = end - start
                         execute(sendAnim)
                         sendMsg.text = "Gif is loaded from YouTube."
                     }
@@ -102,6 +103,7 @@ class Bot : TelegramLongPollingBot() {
                         val sendAudio = SendAudio()
                         sendAudio.setChatId(update.message.chatId)
                         sendAudio.audio = InputFile(file)
+                        sendAudio.duration = end - start
                         execute(sendAudio)
                         sendMsg.text = "Audio is loaded from YouTube."
                     }
@@ -109,6 +111,7 @@ class Bot : TelegramLongPollingBot() {
                         val sendVideo = SendVideo()
                         sendVideo.setChatId(update.message.chatId)
                         sendVideo.video = InputFile(file)
+                        sendVideo.duration = end - start
                         execute(sendVideo)
                         sendMsg.text = "Video is loaded from YouTube."
                     }

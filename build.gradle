@@ -34,3 +34,5 @@ compileTestKotlin {
 application {
     mainClassName = 'MainKt'
 }
+
+jar

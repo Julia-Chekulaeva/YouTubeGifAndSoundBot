@@ -3,20 +3,17 @@ import com.github.kiulian.downloader.downloader.request.RequestVideoInfo
 import com.github.kiulian.downloader.downloader.response.Response
 import com.github.kiulian.downloader.model.videos.VideoInfo
 import com.github.kiulian.downloader.model.videos.quality.VideoQuality
-import com.madgag.gif.fmsware.AnimatedGifEncoder
 import net.bramp.ffmpeg.FFmpeg
 import net.bramp.ffmpeg.FFmpegExecutor
 import net.bramp.ffmpeg.FFprobe
 import net.bramp.ffmpeg.builder.FFmpegBuilder
 import java.io.File
-import javax.imageio.ImageIO
 
 
 class URLException : Exception() {
     override val message = "Wrong URL"
 }
 
-const val periodMS = 100
 val videoQualityMax = VideoQuality.medium
 
 val urlRegex = Regex(
@@ -44,35 +41,10 @@ fun loader (
         2 -> videoInfo.videoFormats().filter {
                 it.videoQuality() <= videoQualityMax
             }.maxByOrNull { it.videoQuality() }!!
-        else -> videoInfo.bestAudioFormat()
+        3 -> videoInfo.bestAudioFormat()
+        else -> videoInfo.bestVideoWithAudioFormat()
     }
-    if (cmdId == 2) {
-        val gifFile = file.absolutePath
-        val frames = List((end - start) * 1000 / periodMS) { "$gifFile$it$animExt" }
-        val video = gifFile + videoExt
-        val animEncoder = AnimatedGifEncoder()
-        animEncoder.start(gifFile)
-        animEncoder.setDelay(periodMS)
-        try {
-            convert(urlFormat.url(), video, startL, endL)
-            for (i in 0L until endL - startL step periodMS.toLong()) {
-                val frameFilePath = frames[(i / periodMS).toInt()]
-                convert(video, frameFilePath, i, i + periodMS)
-                val buffImg = ImageIO.read(File(frameFilePath))
-                animEncoder.addFrame(buffImg)
-            }
-        } catch (e: Exception) {
-            throw e
-        } finally {
-            animEncoder.finish()
-            File(video).delete()
-            for (i in 0 until ((endL - startL) / periodMS).toInt()) {
-                File(frames[i]).delete()
-            }
-        }
-    } else {
-        convert(urlFormat.url(), file.absolutePath, startL, endL)
-    }
+    convert(urlFormat.url(), file.absolutePath, startL, endL)
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {

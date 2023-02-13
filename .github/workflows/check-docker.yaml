@@ -1,7 +1,7 @@
 name: check-docker-task
 on: [push]
 jobs:
-  Gradle-Run-Tests:
+  Build-Docker:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

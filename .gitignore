@@ -1,3 +1,5 @@
 # Default ignored files
 /.idea/
-/.gradle
+/.gradle/
+/build/
+/config.yaml

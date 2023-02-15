@@ -34,3 +34,11 @@ compileTestKotlin {
 application {
     mainClassName = 'MainKt'
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'TelegramBotApplicationKt'
+        )
+    }
+}

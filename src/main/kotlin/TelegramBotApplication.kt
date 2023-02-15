@@ -34,7 +34,7 @@ const val videoExt = ".mp4"
 
 val regex = Regex("""((\d?\d:)?[0-5]?\d:[0-5]?\d)?-((\d?\d:)?[0-5]?\d:[0-5]?\d)?""")
 
-fun main() {
+fun main(args: Array<String>) {
     TelegramBotsApi(DefaultBotSession::class.java).registerBot(Bot())
 }
 

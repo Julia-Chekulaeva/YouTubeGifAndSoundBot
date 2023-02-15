@@ -7,6 +7,6 @@ ENV ff_probe="/app/ffmpeg-master-latest-win64-gpl/bin/ffprobe"
 RUN gradle build
 WORKDIR /
 RUN ls -R
-COPY /home/gradle/src/build/libs/YouTubeGifAndSoundBot-1.0.jar /app/app.jar
+RUN copy /home/gradle/src/build/libs/YouTubeGifAndSoundBot-1.0.jar /app/app.jar
 ADD ffmpeg-master-latest-win64-gpl.rar /app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

@@ -5,7 +5,8 @@ ENV telegram_bot_token=telegram_bot_token
 ENV ff_mpeg="/app/ffmpeg-master-latest-win64-gpl/bin/ffmpeg"
 ENV ff_probe="/app/ffmpeg-master-latest-win64-gpl/bin/ffprobe"
 RUN gradle build
+WORKDIR /
 RUN ls -R
-COPY ./build/libs/YouTubeGifAndSoundBot-1.0.jar /app/app.jar
+COPY /home/gradle/build/libs/YouTubeGifAndSoundBot-1.0.jar /app/app.jar
 ADD ffmpeg-master-latest-win64-gpl.rar /app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

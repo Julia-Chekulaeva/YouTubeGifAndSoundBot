@@ -9,4 +9,6 @@ jobs:
       - run: export telegram_bot_token=6224529356:AAGRVh3k_EQn-7tW6qFrW_Fo1vcR1I2Z9JQ
       - run: docker build --tag app .
       - run: ls
-      - run: echo "The image of the server for the bot with id=$telegram_bot_token is created"
+      - run: echo "The image of the server for the bot is created"
+      - run: cd /var/lib/docker/containers
+      - run: ls -R

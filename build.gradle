@@ -35,4 +35,10 @@ application {
     mainClassName = 'MainKt'
 }
 
-jar
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'TelegramBotApplicationKt'
+        )
+    }
+}

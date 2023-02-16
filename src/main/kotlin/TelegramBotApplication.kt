@@ -54,6 +54,7 @@ class Bot : TelegramLongPollingBot() {
         sendMsg.setChatId(update.message.chatId)
         val cmdId = commands.indexOf(cmd)
         sendMsg.text = responseMessages[cmdId]
+        sendMsg.replyToMessageId = update.message.messageId
         execute(sendMsg)
         if (cmdId in 2..4) {
             if (args.size < 2) {
@@ -98,6 +99,7 @@ class Bot : TelegramLongPollingBot() {
                         sendAnim.setChatId(update.message.chatId)
                         sendAnim.animation = InputFile(file)
                         sendAnim.duration = end - start
+                        sendAnim.replyToMessageId = update.message.messageId
                         execute(sendAnim)
                         sendMsg.text = "Gif is loaded from YouTube."
                     }
@@ -106,6 +108,7 @@ class Bot : TelegramLongPollingBot() {
                         sendAudio.setChatId(update.message.chatId)
                         sendAudio.audio = InputFile(file)
                         sendAudio.duration = end - start
+                        sendAudio.replyToMessageId = update.message.messageId
                         execute(sendAudio)
                         sendMsg.text = "Audio is loaded from YouTube."
                     }
@@ -114,6 +117,7 @@ class Bot : TelegramLongPollingBot() {
                         sendVideo.setChatId(update.message.chatId)
                         sendVideo.video = InputFile(file)
                         sendVideo.duration = end - start
+                        sendVideo.replyToMessageId = update.message.messageId
                         execute(sendVideo)
                         sendMsg.text = "Video is loaded from YouTube."
                     }

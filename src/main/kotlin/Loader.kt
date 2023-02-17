@@ -48,6 +48,7 @@ fun loader (
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {
+    println(System.getenv("ff_mpeg"))
     val ffMPEG = FFmpeg(File(System.getenv("ff_mpeg")).absolutePath.removeSuffix(".exe"))
     val ffProbe = FFprobe(File(System.getenv("ff_probe")).absolutePath.removeSuffix(".exe"))
 

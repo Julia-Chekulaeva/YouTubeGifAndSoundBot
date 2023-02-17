@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: unzip ffmpeg-master-latest-win64-gpl.zip ./ffmpeg-master-latest-win64-gpl
+      - run: unzip ffmpeg-master-latest-win64-gpl.zip
       - run: export ff_mpeg=./ffmpeg-master-latest-win64-gpl/bin/ffmpeg
       - run: export ff_probe=./ffmpeg-master-latest-win64-gpl/bin/ffprobe
       - name: Set up JDK 17

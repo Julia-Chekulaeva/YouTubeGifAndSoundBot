@@ -32,7 +32,7 @@ compileTestKotlin {
 }
 
 application {
-    mainClassName = 'MainKt'
+    getMainClass().set('TelegramBotApplicationKt')
 }
 
 jar {

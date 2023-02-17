@@ -5,10 +5,6 @@ import java.io.File
 
 class Tests {
 
-    init {
-        Junrar.extract("ffmpeg-master-latest-win64-gpl.rar", "./")
-    }
-
     private fun testLoader(
         url: String, downloader: YoutubeDownloader,
         start: Int, end: Int, fileName: String, cmdId: Int

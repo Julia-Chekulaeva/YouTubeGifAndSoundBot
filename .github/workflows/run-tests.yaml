@@ -15,5 +15,4 @@ jobs:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
     steps:
       - uses: actions/checkout@HEAD
-      - run: export telegram_bot_token=6224529356:AAGRVh3k_EQn-7tW6qFrW_Fo1vcR1I2Z9JQ
       - run: gradle test

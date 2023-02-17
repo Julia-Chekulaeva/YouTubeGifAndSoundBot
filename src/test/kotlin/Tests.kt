@@ -1,8 +1,13 @@
+import com.github.junrar.Junrar
 import com.github.kiulian.downloader.YoutubeDownloader
 import org.junit.jupiter.api.Test
 import java.io.File
 
 class Tests {
+
+    init {
+        Junrar.extract("ffmpeg-master-latest-win64-gpl.rar", "./")
+    }
 
     private fun testLoader(
         url: String, downloader: YoutubeDownloader,

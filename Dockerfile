@@ -1,7 +1,7 @@
 FROM gradle:7.4-jdk17-alpine as build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle build
+RUN gradle jar
 
 FROM openjdk:17-alpine
 ENV telegram_bot_token=telegram_bot_token

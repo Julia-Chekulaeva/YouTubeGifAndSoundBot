@@ -36,6 +36,8 @@ const val videoExt = ".mp4"
 val regex = Regex("""((\d?\d:)?[0-5]?\d:[0-5]?\d)?-((\d?\d:)?[0-5]?\d:[0-5]?\d)?""")
 
 fun main(args: Array<String>) {
+    System.getenv()["ff_mpeg"] = "ffmpeg-master-latest-win64-gpl/bin/ffmpeg"
+    System.getenv()["ff_probe"] = "ffmpeg-master-latest-win64-gpl/bin/ffprobe"
     Junrar.extract("ffmpeg-master-latest-win64-gpl.rar", "./")
     TelegramBotsApi(DefaultBotSession::class.java).registerBot(Bot())
 }

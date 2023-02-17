@@ -20,3 +20,4 @@ jobs:
         with:
           gradle-version: 7.4
           arguments: test
+          options: --warning-mode all

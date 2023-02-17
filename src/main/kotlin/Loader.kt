@@ -48,6 +48,7 @@ fun loader (
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {
+    println(File("./ffmpeg-master-latest-win64-gpl/bin").listFiles())
     val ffMPEG = FFmpeg(System.getenv("ff_mpeg"))
     val ffProbe = FFprobe(System.getenv("ff_probe"))
 

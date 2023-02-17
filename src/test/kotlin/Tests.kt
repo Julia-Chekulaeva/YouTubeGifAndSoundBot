@@ -24,7 +24,7 @@ class Tests {
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
             0, 10, "src/test/resources/file0_10.gif", 2)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 145, "src/test/kotlin/resources/file140_160.gif", 2)
+            140, 145, "src/test/resources/file140_160.gif", 2)
     }
 
     @Test

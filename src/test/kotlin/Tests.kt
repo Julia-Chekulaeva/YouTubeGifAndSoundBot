@@ -5,11 +5,6 @@ import java.io.File
 
 class Tests {
 
-    @Test
-    fun testFun() {
-        assert(2 + 2 == 4)
-    }
-/*
     init {
         Junrar.extract("ffmpeg-master-latest-win64-gpl.rar", "./")
     }
@@ -48,5 +43,5 @@ class Tests {
             0, 10, "src/test/resources/file0_10.mp4", 4)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
             140, 145, "src/test/resources/file140_160.mp4", 2)
-    }*/
+    }
 }

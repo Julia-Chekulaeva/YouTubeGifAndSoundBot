@@ -14,7 +14,9 @@ class Tests {
         start: Int, end: Int, fileName: String, cmdId: Int
     ) {
         val videoInfo = getInfo(url, downloader).data()
+        println(fileName)
         loader(start, end, fileName, videoInfo, cmdId)
+        println(File(fileName).exists())
         check(File(fileName).exists())
     }
 

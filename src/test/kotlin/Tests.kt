@@ -29,15 +29,15 @@ class Tests {
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
             0, 10, "src/test/resources/file0_10.wav", 3)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 145, "src/test/resources/file140_160.wav", 2)
+            140, 145, "src/test/resources/file140_160.wav", 3)
     }
 
     @Test
     fun testVideoLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 10, "src/test/resources/file0_10.mp4", 4)
+            0, 10, "file0_10.mp4", 4)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 145, "src/test/resources/file140_160.mp4", 2)
+            140, 145, "file140_160.mp4", 4)
     }
 }

@@ -24,7 +24,7 @@ class Tests {
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
             0, 10, "src/test/kotlin/resources/file0_10.gif", 2)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 160, "src/test/kotlin/resources/file140_160.gif", 2)
+            140, 145, "src/test/kotlin/resources/file140_160.gif", 2)
     }
 
     @Test
@@ -33,7 +33,7 @@ class Tests {
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
             0, 10, "src/test/kotlin/resources/file0_10.wav", 3)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 160, "src/test/kotlin/resources/file140_160.wav", 2)
+            140, 145, "src/test/kotlin/resources/file140_160.wav", 2)
     }
 
     @Test
@@ -42,6 +42,6 @@ class Tests {
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
             0, 10, "src/test/kotlin/resources/file0_10.mp4", 4)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 160, "src/test/kotlin/resources/file140_160.mp4", 2)
+            140, 145, "src/test/kotlin/resources/file140_160.mp4", 2)
     }
 }

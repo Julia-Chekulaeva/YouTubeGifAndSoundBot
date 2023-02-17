@@ -48,7 +48,7 @@ fun loader (
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {
-    println(File(".").listFiles().joinToString { it.name })
+    println(File("./ffmpeg-master-latest-win64-gpl").listFiles().joinToString { it.name })
     val ffMPEG = FFmpeg("ffmpeg-master-latest-win64-gpl/bin/ffmpeg")
     val ffProbe = FFprobe("ffmpeg-master-latest-win64-gpl/bin/ffprobe")
 

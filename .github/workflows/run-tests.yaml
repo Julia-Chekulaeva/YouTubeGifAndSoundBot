@@ -29,6 +29,7 @@ jobs:
         if: ${{ matrix.os }} == 'macos-latest'
         run: export ff_mpeg=ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg
           | export ff_probe=ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe
+      - run: printenv
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

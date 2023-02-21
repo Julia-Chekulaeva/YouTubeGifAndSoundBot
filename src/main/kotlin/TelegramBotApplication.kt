@@ -1,4 +1,3 @@
-import com.github.junrar.Junrar
 import com.github.kiulian.downloader.YoutubeDownloader
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
 import org.telegram.telegrambots.meta.TelegramBotsApi
@@ -36,7 +35,6 @@ const val videoExt = ".mp4"
 val regex = Regex("""((\d?\d:)?[0-5]?\d:[0-5]?\d)?-((\d?\d:)?[0-5]?\d:[0-5]?\d)?""")
 
 fun main(args: Array<String>) {
-    Junrar.extract("ffmpeg/windows/ffmpeg-master-latest-win64-gpl.rar", "./")
     TelegramBotsApi(DefaultBotSession::class.java).registerBot(Bot())
 }
 

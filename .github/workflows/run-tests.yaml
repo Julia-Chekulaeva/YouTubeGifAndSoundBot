@@ -16,11 +16,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: unzip ffmpeg-master-latest-win64-gpl.zip
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Add ff_mpeg and ff_probe environments (Ubuntu)
+        if: ${{ matrix.os }} == 'ubuntu-latest'
+        run: export ff_mpeg=ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg
+          | export ff_probe=ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe
+      - name: Add ff_mpeg and ff_probe environments (MacOS)
+        if: ${{ matrix.os }} == 'macos-latest'
+        run: export ff_mpeg=ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg
+          | export ff_probe=ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe
       - name: Build with Gradle
-        run: sudo gradle test -i
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test -i
+          gradle-version: 7.4.2

@@ -44,6 +44,7 @@ fun loader (
         3 -> videoInfo.bestAudioFormat()
         else -> videoInfo.bestVideoWithAudioFormat()
     }
+    File(urlFormat.url()).exists()
     convert(urlFormat.url(), file.absolutePath, startL, endL)
 }
 

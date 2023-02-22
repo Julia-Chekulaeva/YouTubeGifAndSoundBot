@@ -10,9 +10,6 @@ on:
 jobs:
   Run-Tests:
     runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest ]
 
     if: ${{ matrix.os }} == 'ubuntu-latest'
     env:
@@ -22,6 +19,10 @@ jobs:
       env:
         ff_mpeg: 'ffmpeg/mac/ffmpeg-5.1.2/ffmpeg'
         ff_probe: 'ffmpeg/mac/ffprobe-5.1.2/ffprobe'
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
 
     steps:
       - uses: actions/checkout@HEAD

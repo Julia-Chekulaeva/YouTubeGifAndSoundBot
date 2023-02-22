@@ -65,7 +65,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: unzip ffmpeg/windows/ffmpeg-master-latest-win64-gpl.zip ffmpeg/windows
+      - run: unzip ffmpeg/windows/ffmpeg-master-latest-win64-gpl.zip ffmpeg/windows/ffmpeg-master-latest-win64-gpl
       - run: icacls ffmpeg/windows/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe /grant All:RX
       - run: icacls ffmpeg/windows/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe /grant All:RX
       - name: Build with Gradle

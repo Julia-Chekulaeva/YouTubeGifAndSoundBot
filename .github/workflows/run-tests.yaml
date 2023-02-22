@@ -31,7 +31,6 @@ jobs:
         env:
           ff_mpeg: 'ffmpeg/mac/ffmpeg-5.1.2/ffmpeg'
           ff_probe: 'ffmpeg/mac/ffprobe-5.1.2/ffprobe'
-      - run: printenv
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

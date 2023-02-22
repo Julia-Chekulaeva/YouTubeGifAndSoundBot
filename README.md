@@ -5,6 +5,10 @@ Here is the description of how to use this bot.
 Unfortunately, the gifs larger than 30 seconds most probably couldn't get loaded
 because files larger than 50 MB cannot be sent in Telegram.
 
+### Tests
+
+[![run-tests-task](https://github.com/Julia-Chekulaeva/YouTubeGifAndSoundBot/actions/workflows/run-tests.yaml/badge.svg)](https://github.com/Julia-Chekulaeva/YouTubeGifAndSoundBot/actions/workflows/run-tests.yaml)
+
 ### Commands
 
 `/start` - prints a description of the bot.

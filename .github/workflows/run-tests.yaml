@@ -50,3 +50,26 @@ jobs:
         with:
           arguments: test -i
           gradle-version: 7.4.2
+
+
+  Run-Tests-Windows:
+    runs-on: macos-latest
+    env:
+      ff_mpeg: ffmpeg/windows/ffmpeg-master-latest-win64-gpl/bin/ffmpeg
+      ff_probe: ffmpeg/windows/ffmpeg-master-latest-win64-gpl/bin/ffprobe
+
+    steps:
+      - uses: actions/checkout@HEAD
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - run: unrar ffmpeg/windows/ffmpeg-master-latest-win64-gpl.rar ffmpeg/windows
+      - run: icacls ffmpeg/windows/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe /grant All:RX
+      - run: icacls ffmpeg/windows/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe /grant All:RX
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test -i
+          gradle-version: 7.4.2

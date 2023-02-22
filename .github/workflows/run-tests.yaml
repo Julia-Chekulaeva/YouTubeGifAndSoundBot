@@ -21,8 +21,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: sudo chmod ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg 777
-      - run: sudo chmod ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe 777
+      - run: sudo chmod 777 ${ ff_mpeg }
+      - run: sudo chmod 777 ${ ff_probe }
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
@@ -43,8 +43,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: sudo chmod ffmpeg/mac/ffmpeg-5.1.2/ffmpeg 777
-      - run: sudo chmod ffmpeg/mac/ffprobe-5.1.2/ffprobe 777
+      - run: sudo chmod 777 ${ ff_mpeg }
+      - run: sudo chmod 777 ${ ff_probe }
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

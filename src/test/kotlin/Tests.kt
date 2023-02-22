@@ -1,4 +1,3 @@
-import com.github.junrar.Junrar
 import com.github.kiulian.downloader.YoutubeDownloader
 import org.junit.jupiter.api.Test
 import java.io.File

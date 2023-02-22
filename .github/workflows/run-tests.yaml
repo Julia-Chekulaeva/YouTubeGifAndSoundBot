@@ -11,8 +11,8 @@ jobs:
   Run-Tests-Ubuntu:
     runs-on: ubuntu-latest
     env:
-      ff_mpeg: 'ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg'
-      ff_probe: 'ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe'
+      ff_mpeg: ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg
+      ff_probe: ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe
 
     steps:
       - uses: actions/checkout@HEAD
@@ -34,8 +34,8 @@ jobs:
   Run-Tests-MacOS:
     runs-on: macos-latest
     env:
-      ff_mpeg: 'ffmpeg/mac/ffmpeg-5.1.2/ffmpeg'
-      ff_probe: 'ffmpeg/mac/ffprobe-5.1.2/ffprobe'
+      ff_mpeg: ffmpeg/mac/ffmpeg-5.1.2/ffmpeg
+      ff_probe: ffmpeg/mac/ffprobe-5.1.2/ffprobe
 
     steps:
       - uses: actions/checkout@HEAD

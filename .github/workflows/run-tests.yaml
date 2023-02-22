@@ -23,16 +23,12 @@ jobs:
           distribution: 'temurin'
       - name: Add ff_mpeg and ff_probe vars (Ubuntu)
         if: ${{ matrix.os }} == 'ubuntu-latest'
-        run: ff_mpeg='ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg'
+        run: bash ff_mpeg='ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffmpeg'
           | ff_probe='ffmpeg/ubuntu/ffmpeg-5.1.1-amd64-static/ffprobe'
-          | export ff_mpeg
-          | export ff_mpeg
       - name: Add ff_mpeg and ff_probe vars (MacOS)
         if: ${{ matrix.os }} == 'macos-latest'
-        run: ff_mpeg='ffmpeg/mac/ffmpeg-5.1.1-amd64-static/ffmpeg'
+        run: bash ff_mpeg='ffmpeg/mac/ffmpeg-5.1.1-amd64-static/ffmpeg'
           | ff_probe='ffmpeg/mac/ffmpeg-5.1.1-amd64-static/ffprobe'
-          | export ff_mpeg
-          | export ff_mpeg
       - run: export ff_mpeg
       - run: export ff_probe
       - run: printenv

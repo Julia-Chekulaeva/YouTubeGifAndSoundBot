@@ -21,7 +21,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: echo 'ff_mpeg=$ff_mpeg, ff_probe=$ff_probe'
+      - run: echo 'ff_mpeg=${{ ff_mpeg }}, ff_probe=${{ ff_probe }}'
+      - run: sudo chmod ${{ ff_mpeg }} 777
+      - run: sudo chmod ${{ ff_probe }} 777
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
@@ -42,7 +44,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: echo 'ff_mpeg=$ff_mpeg, ff_probe=$ff_probe'
+      - run: echo 'ff_mpeg=${{ ff_mpeg }}, ff_probe=${{ ff_probe }}'
+      - run: sudo chmod ${{ ff_mpeg }} 777
+      - run: sudo chmod ${{ ff_probe }} 777
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

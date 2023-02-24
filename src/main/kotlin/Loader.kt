@@ -48,8 +48,8 @@ fun loader (
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {
-    val ffMPEG = FFmpeg(System.getenv("ff_mpeg"))
-    val ffProbe = FFprobe(System.getenv("ff_probe"))
+    val ffMPEG = FFmpeg(System.getenv("ffmpeg-path"))
+    val ffProbe = FFprobe(System.getenv("ffprobe-path"))
 
     val builder = FFmpegBuilder()
         .setInput(inputFile)

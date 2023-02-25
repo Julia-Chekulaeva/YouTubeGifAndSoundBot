@@ -25,7 +25,6 @@ jobs:
           distribution: 'temurin'
       - run: printenv
       - run: export ffmpeg_path=ffmpeg
-      - run: ffmpeg -i input.mp4 output.mp3
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

@@ -3,10 +3,6 @@ import com.github.kiulian.downloader.downloader.request.RequestVideoInfo
 import com.github.kiulian.downloader.downloader.response.Response
 import com.github.kiulian.downloader.model.videos.VideoInfo
 import com.github.kiulian.downloader.model.videos.quality.VideoQuality
-import net.bramp.ffmpeg.FFmpeg
-import net.bramp.ffmpeg.FFmpegExecutor
-import net.bramp.ffmpeg.FFprobe
-import net.bramp.ffmpeg.builder.FFmpegBuilder
 import java.io.File
 
 
@@ -46,20 +42,4 @@ fun loader (
             "-ss ${start / 3600}:${(start / 60) % 60}:${start % 60} " +
             "-t ${end / 3600}:${(end / 60) % 60}:${end % 60} ${file.absolutePath}"
     Runtime.getRuntime().exec(commands)
-}
-
-fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {
-    val ffMPEG = FFmpeg(System.getenv("ffmpeg-path") ?: throw Exception("No env var named ffmpeg-path"))
-    val ffProbe = FFprobe(System.getenv("ffprobe-path") ?: throw Exception("No env var named ffmpeg-path"))
-
-    val builder = FFmpegBuilder()
-        .setInput(inputFile)
-        .overrideOutputFiles(true)
-        .addOutput(outputFile)
-
-    builder.startOffset = start
-    builder.duration = end - start
-
-    val executor = FFmpegExecutor(ffMPEG, ffProbe)
-    executor.createJob(builder.done()).run()
 }

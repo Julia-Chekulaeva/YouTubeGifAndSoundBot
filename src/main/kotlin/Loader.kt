@@ -35,8 +35,6 @@ fun loader (
     videoInfo: VideoInfo, cmdId: Int
 ) {
     val file = File(fileName)
-    val startL = start * 1000L
-    val endL = end * 1000L
     val urlFormat = when (cmdId) {
         2 -> videoInfo.videoFormats().filter {
                 it.videoQuality() <= videoQualityMax
@@ -44,7 +42,10 @@ fun loader (
         3 -> videoInfo.bestAudioFormat()
         else -> videoInfo.bestVideoWithAudioFormat()
     }
-    convert(urlFormat.url(), file.absolutePath, startL, endL)
+    val commands = "${System.getenv("ffmpeg-path")} -i ${urlFormat.url()} " +
+            "-ss ${start / 3600}:${(start / 60) % 60}:${start % 60} " +
+            "-t ${end / 3600}:${(end / 60) % 60}:${end % 60} ${file.absolutePath}"
+    Runtime.getRuntime().exec(commands)
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {

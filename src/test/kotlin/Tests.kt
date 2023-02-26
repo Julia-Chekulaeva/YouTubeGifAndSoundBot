@@ -10,9 +10,11 @@ class Tests {
     ) {
         val videoInfo = getInfo(url, downloader).data()
         loader(start, end, fileName, videoInfo, cmdId)
-        if (!File(fileName).exists())
+        val file = File(fileName)
+        if (!file.exists())
             throw Exception("File $fileName does not exist")
-        check(File(fileName).exists())
+        check(file.exists())
+        file.delete()
     }
 
     @Test

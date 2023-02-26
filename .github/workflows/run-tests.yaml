@@ -8,17 +8,6 @@ on:
 
 
 jobs:
-  Install-FFmpeg:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-
-    steps:
-      - uses: FedericoCarboni/setup-ffmpeg@v2
-        id: setup-ffmpeg
-
-
   Run-Tests:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -33,10 +22,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: echo ${{ needs.Install-FFmpeg.outputs.ffmpeg-path }}
+      - uses: FedericoCarboni/setup-ffmpeg@v2
+        id: setup-ffmpeg
+      - run: echo ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}
       - name: Build with Gradle
         env:
-          ffmpeg_path: ${{ needs.Install-FFmpeg.outputs.ffmpeg-path }}
+          ffmpeg_path: ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}
         uses: gradle/gradle-build-action@v2
         with:
           arguments: test -i

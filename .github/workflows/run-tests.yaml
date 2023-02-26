@@ -9,11 +9,10 @@ on:
 
 jobs:
   Install-FFmpeg:
-    runs-on: ${{ inputs.matrix_os }}
-    inputs:
-      matrix_os:
-        required: true
-        type: string
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
 
     steps:
       - uses: FedericoCarboni/setup-ffmpeg@v2

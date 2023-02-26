@@ -10,6 +10,8 @@ class Tests {
     ) {
         val videoInfo = getInfo(url, downloader).data()
         loader(start, end, fileName, videoInfo, cmdId)
+        Runtime.getRuntime().exec("echo $fileName")
+        Runtime.getRuntime().exec("ls -R")
         check(File(fileName).exists())
     }
 

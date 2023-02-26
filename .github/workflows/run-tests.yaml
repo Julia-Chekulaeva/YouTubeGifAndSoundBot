@@ -23,8 +23,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: printenv
-      - run: export ffmpeg_path=ffmpeg
+      - run: echo ${{ jobs.setup-ffmpeg.ffmpeg-path }}
+      - run: export ffmpeg_path=${{ jobs.setup-ffmpeg.ffmpeg-path }}
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

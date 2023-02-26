@@ -24,6 +24,7 @@ jobs:
       - uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
       - run: echo ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}
+      - run: ls -R
       - name: Build with Gradle
         env:
           ffmpeg_path: ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}

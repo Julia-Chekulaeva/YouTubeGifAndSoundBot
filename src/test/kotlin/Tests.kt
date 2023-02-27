@@ -10,10 +10,12 @@ class Tests {
     ) {
         val videoInfo = getInfo(url, downloader).data()
         val file = File(fileName)
-        println("Downloading data into file ${file.absolutePath}")
         if (!file.parentFile.exists())
             throw Exception("No parent directory for file ${file.absolutePath}")
+        file.deleteOnExit()
+        println("Downloading data into file ${file.absolutePath}...")
         loader(start, end, fileName, videoInfo, cmdId)
+        println("Data is downloaded into file ${file.absolutePath}")
         check(file.exists())
         file.delete()
     }

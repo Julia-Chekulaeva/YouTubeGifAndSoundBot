@@ -23,6 +23,7 @@ jobs:
           distribution: 'temurin'
       - uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
+      - run: mkdir ./src/test/resources
       - run: pwd
       - run: ls -R
       - name: Build with Gradle

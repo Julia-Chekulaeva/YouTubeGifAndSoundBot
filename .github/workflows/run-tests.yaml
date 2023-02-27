@@ -26,7 +26,7 @@ jobs:
       - env:
           ffmpeg_path: ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}
           ffprobe_path: ${{ steps.setup-ffmpeg.outputs.ffprobe-path }}
-      - run: echo $ffmpeg_path
+        run: echo $ffmpeg_path
       - run: echo $ffprobe_path
       - run: ls -R
       - name: Build with Gradle

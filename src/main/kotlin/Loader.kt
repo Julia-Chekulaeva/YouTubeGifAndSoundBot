@@ -48,8 +48,8 @@ fun loader (
 }
 
 fun convert(inputFile: String, outputFile: String, start: Long, end: Long) {
-    val ffMPEG = FFmpeg(System.getenv("ffmpeg_path") ?: throw Exception("No env var named ffmpeg-path"))
-    val ffProbe = FFprobe(System.getenv("ffprobe_path") ?: throw Exception("No env var named ffmpeg-path"))
+    val ffMPEG = FFmpeg(System.getenv("ffmpeg_path") ?: throw Exception("No env var named ffmpeg_path"))
+    val ffProbe = FFprobe(System.getenv("ffprobe_path") ?: throw Exception("No env var named ffprobe_path"))
 
     val builder = FFmpegBuilder()
         .setInput(inputFile)

@@ -16,6 +16,7 @@ class Tests {
         println("Downloading data into file ${file1.absolutePath}...")
         loader(start, end, fileName, videoInfo, cmdId)
         println("The loading process is completed")
+        file1.parentFile?.listFiles()?.forEach { println(it.name) }
         val file2 = File(fileName)
         check(file2.exists())
         println("Data is downloaded into file ${file1.absolutePath}")

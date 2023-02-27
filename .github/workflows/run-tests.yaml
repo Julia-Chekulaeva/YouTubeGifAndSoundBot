@@ -23,13 +23,11 @@ jobs:
           distribution: 'temurin'
       - uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
-      - env:
-          ffmpeg_path: ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}
-          ffprobe_path: ${{ steps.setup-ffmpeg.outputs.ffprobe-path }}
-        run: echo $ffmpeg_path
-      - run: echo $ffprobe_path
       - run: ls -R
       - name: Build with Gradle
+        env:
+          ffmpeg_path: ${{ steps.setup-ffmpeg.outputs.ffmpeg-path }}
+          ffprobe_path: ${{ steps.setup-ffmpeg.outputs.ffprobe-path }}
         uses: gradle/gradle-build-action@v2
         with:
           arguments: test -i

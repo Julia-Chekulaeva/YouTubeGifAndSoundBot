@@ -9,10 +9,11 @@ class Tests {
         start: Int, end: Int, fileName: String, cmdId: Int
     ) {
         val videoInfo = getInfo(url, downloader).data()
+        val dir = File(fileName).parentFile
+        if (!dir.exists())
+            throw Exception("No directory named ${dir.absolutePath}")
         loader(start, end, fileName, videoInfo, cmdId)
         val file = File(fileName)
-        if (!file.exists())
-            throw Exception("File $fileName does not exist")
         check(file.exists())
         file.delete()
     }

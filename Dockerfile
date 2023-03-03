@@ -4,12 +4,12 @@ WORKDIR /home/gradle/src
 RUN gradle jar
 
 FROM jrottenberg/ffmpeg:3.3-alpine as ffmpeg_img
-RUN ls -R
+RUN ls /usr/local/bin
 
 FROM openjdk:17-alpine
 ENV telegram_bot_token=$telegram_bot_token_env
 COPY --from=build /home/gradle/src/build/libs/YouTubeGifAndSoundBot-1.0.jar /app
 ENV ffmpeg_path=ffmpeg/ffmpeg
 ENV ffprobe_path=ffmpeg/ffprobe
-COPY --from=ffmpeg_img ffmpeg /ffmpeg
+COPY --from=ffmpeg_img /usr/local/bin /ffmpeg
 ENTRYPOINT ["java", "-jar", "/app/YouTubeGifAndSoundBot-1.0.jar"]

@@ -1,9 +1,9 @@
 name: check-docker-task
 on:
   push:
-    branches: "main"
+    branches: "main", "develop"
   pull_request:
-    branches: "main"
+    branches: "main", "develop"
   workflow_dispatch:
 
 
@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@HEAD
-      - run: export telegram_bot_token=6224529356:AAGRVh3k_EQn-7tW6qFrW_Fo1vcR1I2Z9JQ
+      - run: export telegram_bot_token_env=6224529356:AAGRVh3k_EQn-7tW6qFrW_Fo1vcR1I2Z9JQ
       - run: docker build .
       - run: echo "The image of the server for the bot is created"

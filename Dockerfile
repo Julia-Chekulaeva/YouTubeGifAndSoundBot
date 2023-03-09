@@ -6,7 +6,7 @@ RUN gradle jar
 FROM openjdk:17-alpine
 ENV telegram_bot_token=$telegram_bot_token_env
 COPY --from=build /home/gradle/src/build/libs/YouTubeGifAndSoundBot-1.0.jar /app
-RUN apk add --no-cache ffmpeg \
+RUN apk add --no-cache ffmpeg
 RUN ls -R /
 ENV ffmpeg_path=/ffmpeg/ffmpeg
 ENV ffprobe_path=/ffmpeg/ffprobe

@@ -39,10 +39,11 @@ fun loader (
         3 -> videoInfo.bestAudioFormat()
         else -> videoInfo.bestVideoWithAudioFormat()
     }
-    val commands = "${System.getenv("ffmpeg_path")} -i ${urlFormat.url()} " +
+    val command = "${System.getenv("ffmpeg_path")} -i ${urlFormat.url()} " +
             "-ss ${start / 3600}:${(start / 60) % 60}:${start % 60} " +
             "-t ${end / 3600}:${(end / 60) % 60}:${end % 60} ${file.absolutePath}"
-    val process = Runtime.getRuntime().exec(commands)
+    val process = Runtime.getRuntime().exec(command)
+    println("Command: $command")
     println("The process has exited before timeout: ${process.waitFor(3, TimeUnit.MINUTES)}")
     println("Exit code: ${process.exitValue()}")
     println("""Input ffmpeg stream:

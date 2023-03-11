@@ -43,7 +43,8 @@ fun loader (
             "-ss ${start / 3600}:${(start / 60) % 60}:${start % 60} " +
             "-t ${end / 3600}:${(end / 60) % 60}:${end % 60} ${file.absolutePath}"
     val process = Runtime.getRuntime().exec(commands)
-    println("Exit code for ffmpeg process: ${process.waitFor(3, TimeUnit.MINUTES)}")
+    println("The process has exited before timeout: ${process.waitFor(3, TimeUnit.MINUTES)}")
+    println("Exit code: ${process.exitValue()}")
     println("""Input ffmpeg stream:
         |${process.inputReader().readText()}""".trimMargin())
     println("""Error ffmpeg stream:

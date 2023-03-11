@@ -41,5 +41,5 @@ fun loader (
     val commands = "${System.getenv("ffmpeg_path")} -i ${urlFormat.url()} " +
             "-ss ${start / 3600}:${(start / 60) % 60}:${start % 60} " +
             "-t ${end / 3600}:${(end / 60) % 60}:${end % 60} ${file.absolutePath}"
-    Runtime.getRuntime().exec(commands)
+    Runtime.getRuntime().exec(commands).waitFor()
 }

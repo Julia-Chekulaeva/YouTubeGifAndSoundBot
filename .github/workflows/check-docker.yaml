@@ -13,7 +13,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@HEAD
-      - run: export telegram_bot_token=6224529356:AAGRVh3k_EQn-7tW6qFrW_Fo1vcR1I2Z9JQ
-      - run: docker build -t youtube_gif_and_sound_bot_image .
+      - name: Export telegram_bot_token var
+        run: export telegram_bot_token=6224529356:AAGRVh3k_EQn-7tW6qFrW_Fo1vcR1I2Z9JQ
+      - name: Docker build
+        run: docker build -t youtube_gif_and_sound_bot_image .
       - run: echo "The image of the server for the bot is created"
+      - name: Docker Run
+        run: docker run --name new_container --env telegram_bot_token=$telegram_bot_token youtube_gif_and_sound_bot_image
       - run: docker ps -a
+      - run: docker kill new_container

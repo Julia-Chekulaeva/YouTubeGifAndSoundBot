@@ -4,6 +4,7 @@ import com.github.kiulian.downloader.downloader.response.Response
 import com.github.kiulian.downloader.model.videos.VideoInfo
 import com.github.kiulian.downloader.model.videos.quality.VideoQuality
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 
 class URLException : Exception() {
@@ -41,5 +42,10 @@ fun loader (
     val commands = "${System.getenv("ffmpeg_path")} -i ${urlFormat.url()} " +
             "-ss ${start / 3600}:${(start / 60) % 60}:${start % 60} " +
             "-t ${end / 3600}:${(end / 60) % 60}:${end % 60} ${file.absolutePath}"
-    Runtime.getRuntime().exec(commands).waitFor()
+    val process = Runtime.getRuntime().exec(commands)
+    println("Exit code for ffmpeg process: ${process.waitFor(3, TimeUnit.MINUTES)}")
+    println("""Input ffmpeg stream:
+        |${process.inputReader().readText()}""".trimMargin())
+    println("""Error ffmpeg stream:
+        |${process.errorReader().readText()}""".trimMargin())
 }

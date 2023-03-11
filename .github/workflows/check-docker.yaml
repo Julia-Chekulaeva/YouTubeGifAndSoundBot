@@ -21,4 +21,6 @@ jobs:
       - name: Docker Run
         run: docker run --name new_container --env telegram_bot_token=$telegram_bot_token youtube_gif_and_sound_bot_image
       - run: docker ps -a
+      - name: Pause for 3 minutes
+        run: sleep 3m
       - run: docker kill new_container

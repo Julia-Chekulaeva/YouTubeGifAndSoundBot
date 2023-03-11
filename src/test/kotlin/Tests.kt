@@ -27,26 +27,26 @@ class Tests {
     fun testGifLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 2, "src/test/resources/file0_10.gif", 2)
+            0, 2, "src/test/resources/file0_2.gif", 2)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 144, "src/test/resources/file140_160.gif", 2)
+            140, 144, "src/test/resources/file140_144.gif", 2)
     }
 
     @Test
     fun testAudioLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 2, "src/test/resources/file0_10.wav", 3)
+            0, 2, "src/test/resources/file0_2.wav", 3)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 144, "src/test/resources/file140_160.wav", 3)
+            140, 144, "src/test/resources/file140_144.wav", 3)
     }
 
     @Test
     fun testVideoLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 2, "src/test/resources/file0_10.mp4", 4)
+            0, 2, "src/test/resources/file0_2.mp4", 4)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 144, "src/test/resources/file140_160.mp4", 4)
+            140, 144, "src/test/resources/file140_144.mp4", 4)
     }
 }

@@ -5,6 +5,22 @@ Here is the description of how to use this bot.
 Unfortunately, the gifs larger than 30 seconds most probably couldn't get loaded
 because files larger than 50 MB cannot be sent in Telegram.
 
+### Environment variables
+
+For the correct work of the app there must be 2 environment variables:
+1. `telegram_bot_token` - the token for the telegram bot created with the help of 
+@BotFather telegram account;
+2. `ffmpeg_path` - the path to the binary ffmpeg file.
+
+### Creating Docker Image
+
+For this step the docker needs to be installed.
+
+```shell
+docker build -t YouTubeGifAndSoundBotImage .
+docker run --env telegram_bot_token=$telegram_bot_token --env ffmpeg_path=/usr/bin/ffmpeg YouTubeGifAndSoundBotImage
+```
+
 ### Tests
 
 [![run-tests-task](https://github.com/Julia-Chekulaeva/YouTubeGifAndSoundBot/actions/workflows/run-tests.yaml/badge.svg)](https://github.com/Julia-Chekulaeva/YouTubeGifAndSoundBot/actions/workflows/run-tests.yaml)

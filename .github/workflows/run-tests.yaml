@@ -23,7 +23,6 @@ jobs:
       - uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
       - run: pwd
-      - run: ls -R /usr/bin
       - if: ${{ matrix.os != 'windows-latest' }}
         run: sudo chmod -R 666 src/test/resources
       - run: ls -l -r src/test

@@ -24,7 +24,7 @@ jobs:
         id: setup-ffmpeg
       - run: pwd
       - if: ${{ matrix.os != 'windows-latest' }}
-        run: sudo chmod -R 666 src/test/resources
+        run: sudo chmod -R 777 src/test/resources
       - run: ls -l -R src/test
       - name: Build with Gradle
         env:

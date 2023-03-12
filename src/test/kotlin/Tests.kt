@@ -9,34 +9,44 @@ class Tests {
         start: Int, end: Int, fileName: String, cmdId: Int
     ) {
         val videoInfo = getInfo(url, downloader).data()
+        val file1 = File(fileName)
+        if (!file1.parentFile.exists())
+            throw Exception("No parent directory for file ${file1.absolutePath}")
+        file1.deleteOnExit()
+        println("Downloading data into file ${file1.absolutePath}...")
         loader(start, end, fileName, videoInfo, cmdId)
-        check(File(fileName).exists())
+        println("The loading process is completed")
+        file1.parentFile!!.listFiles()!!.forEach { println(it.name) }
+        val file2 = File(fileName)
+        check(file2.exists())
+        println("Data is downloaded into file ${file1.absolutePath}")
+        file2.delete()
     }
 
     @Test
     fun testGifLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 2, "src/test/resources/file0_10.gif", 2)
+            0, 2, "src/test/resources/file0_2.gif", 2)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 144, "src/test/resources/file140_160.gif", 2)
+            140, 144, "src/test/resources/file140_144.gif", 2)
     }
 
     @Test
     fun testAudioLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 2, "src/test/resources/file0_10.wav", 3)
+            0, 2, "src/test/resources/file0_2.wav", 3)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 144, "src/test/resources/file140_160.wav", 3)
+            140, 144, "src/test/resources/file140_144.wav", 3)
     }
 
     @Test
     fun testVideoLoading() {
         val downloader = YoutubeDownloader()
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            0, 2, "file0_10.mp4", 4)
+            0, 2, "src/test/resources/file0_2.mp4", 4)
         testLoader("https://www.youtube.com/watch?v=NrJEFrth27Q", downloader,
-            140, 144, "file140_160.mp4", 4)
+            140, 144, "src/test/resources/file140_144.mp4", 4)
     }
 }

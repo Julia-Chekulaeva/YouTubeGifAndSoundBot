@@ -25,7 +25,7 @@ jobs:
       - run: pwd
       - run: ls -R /usr/bin
       - if: ${{ matrix.os != 'windows-latest' }}
-        run: chmod -r 666 src/test/resources
+        run: chmod -R 666 src/test/resources
       - run: ls -l src/test/resources
       - name: Build with Gradle
         env:

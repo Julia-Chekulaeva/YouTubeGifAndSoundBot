@@ -18,7 +18,7 @@ For this step the docker needs to be installed.
 
 ```shell
 docker build -t YouTubeGifAndSoundBotImage .
-docker run --env telegram_bot_token=$telegram_bot_token --env ffmpeg_path=/usr/bin/ffmpeg YouTubeGifAndSoundBotImage
+docker run --name new_container --env telegram_bot_token=$telegram_bot_token youtube_gif_and_sound_bot_image
 ```
 
 ### Tests

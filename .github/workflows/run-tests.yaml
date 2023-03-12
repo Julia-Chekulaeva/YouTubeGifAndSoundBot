@@ -6,6 +6,7 @@ on:
     branches: [ "main", "develop" ]
   workflow_dispatch:
 
+permissions: read-all|write-all
 
 jobs:
   Run-Tests:
@@ -24,7 +25,7 @@ jobs:
       - uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
       - run: pwd
-      - run: ls -R
+      - run: ls -R /usr/bin
       - run: ls -l src/test/resources
       - name: Build with Gradle
         env:

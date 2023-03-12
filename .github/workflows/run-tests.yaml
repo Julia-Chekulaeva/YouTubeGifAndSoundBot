@@ -6,8 +6,6 @@ on:
     branches: [ "main", "develop" ]
   workflow_dispatch:
 
-permissions: read-all|write-all
-
 jobs:
   Run-Tests:
     runs-on: ${{ matrix.os }}
@@ -26,6 +24,8 @@ jobs:
         id: setup-ffmpeg
       - run: pwd
       - run: ls -R /usr/bin
+      - if: ${{ matrix.os != 'windows-latest' }}
+        run: chmod 666 src/test/resources
       - run: ls -l src/test/resources
       - name: Build with Gradle
         env:
